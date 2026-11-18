@@ -1,53 +1,28 @@
-# kmeans-university-segmentation
-A K-Means clustering project for categorizing universities into Private and Public groups using unsupervised learning. This project involves clustering analysis, model evaluation, and comparison with actual labels to gauge clustering effectiveness.
+# University Segmentation with K-Means Clustering
 
-# University Clustering Project with K-Means
+Groups **777 US universities** into two clusters with **K-Means** (unsupervised), then checks how well the clusters match the real *Private / Public* label.
 
-This project leverages the K-Means clustering algorithm to categorize universities into two groups: Private and Public. It serves as an example of how clustering can be applied to data without labels, though in this case, we have labels available to evaluate the performance of our clustering.
+> 📚 **Course project:** completed while following the Udemy course *Python for Data Science and Machine Learning Bootcamp* (Pierian Data). The dataset and task come from the course.
 
-## Project Overview
-K-Means clustering is an unsupervised machine learning algorithm that attempts to categorize data points into clusters based on feature similarity. This project explores the effectiveness of clustering on university data, which includes various characteristics of universities.
+## Data (`College_Data`)
+777 universities with 17 numeric features, e.g. applications, acceptances, enrolment, out-of-state tuition, % faculty with PhD, student/faculty ratio, expenditure per student and graduation rate. The `Private` label is **not** used for clustering, only for evaluation.
 
-## Problem Statement
-The aim is to categorize universities into two groups (Private and Public) without using the labels during clustering, and then assess the performance by comparing the predicted clusters with the actual labels.
-
-## Dataset
-The dataset consists of 777 observations with 18 variables:
-- **Private**: Indicates if the university is private or public (label, not used in clustering).
-- **Apps**: Number of applications received.
-- **Accept**: Number of applications accepted.
-- **Enroll**: Number of new students enrolled.
-- **Top10perc**: Percentage of new students from top 10% of high school class.
-- **Top25perc**: Percentage of new students from top 25% of high school class.
-- **F.Undergrad**: Number of full-time undergraduates.
-- **P.Undergrad**: Number of part-time undergraduates.
-- **Outstate**: Out-of-state tuition fees.
-- **Room.Board**: Room and board costs.
-- **Books**: Estimated book costs.
-- **Personal**: Estimated personal spending.
-- **PhD**: Percentage of faculty with Ph.D.s.
-- **Terminal**: Percentage of faculty with a terminal degree.
-- **S.F.Ratio**: Student/faculty ratio.
-- **perc.alumni**: Percentage of alumni who donate.
-- **Expend**: Instructional expenditure per student.
-- **Grad.Rate**: Graduation rate.
-
-## Project Structure
-- **Data Exploration**: Understanding the data through visualization and descriptive statistics.
-- **Preprocessing**: Scaling features and preparing data for clustering.
-- **Modeling**: Applying K-Means clustering algorithm.
-- **Evaluation**: Comparing the resulting clusters with the actual labels for evaluation.
+## Approach
+1. Exploratory analysis (Seaborn): tuition vs. graduation rate, distributions by type
+2. Fixed a data error: a graduation rate above 100%
+3. **K-Means** with *k = 2* (scikit-learn)
+4. Compared the clusters with the true labels (confusion matrix and classification report)
 
 ## Results
-- **Confusion Matrix** and **Classification Report** are used for evaluation, though typically not a part of unsupervised learning. They are included to analyze the effectiveness of clustering.
+The clusters match the Private/Public label for **78%** of universities (weighted F1 0.75). Because K-Means never sees the labels, this shows how well the features separate the two groups on their own.
 
-## Requirements
-- Python 3.x
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Seaborn
+## Tech
+Python · pandas · NumPy · scikit-learn · Matplotlib · Seaborn · Jupyter
 
-## Usage
-Clone the repository and execute the Jupyter Notebook file to see the full project workflow and results.
-
+## Run it
+```bash
+git clone https://github.com/Aniket1103200/kmeans-university-segmentation.git
+cd kmeans-university-segmentation
+pip install -r requirements.txt
+jupyter notebook kmeans_university_clustering.ipynb
+```
